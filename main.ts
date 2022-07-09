@@ -28,10 +28,17 @@ function render () {
     }
 }
 function fallmeteor () {
-    for (let value of aMeteorsY) {
-    	
+    for (let index = 0; index <= 4; index++) {
+        y = aMeteorsY[index]
+        if (y == 5) {
+            aMeteorsY[index] = randint(-15, -1)
+        } else {
+            led.unplot(index, y)
+            aMeteorsY[index] = y + 1
+        }
     }
 }
+let y = 0
 let aMeteorsY: number[] = []
 let player1 = 0
 player1 = 2
