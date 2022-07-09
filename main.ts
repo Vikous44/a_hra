@@ -43,14 +43,22 @@ let aMeteorsY: number[] = []
 let player1 = 0
 player1 = 2
 aMeteorsY = [
-2,
 0,
-3,
-1,
+0,
+0,
+0,
 0
 ]
+for (let index = 0; index <= 4; index++) {
+    aMeteorsY[index] = randint(-15, -1)
+}
 basic.forever(function () {
     playercontroller()
+})
+basic.forever(function () {
     fallmeteor()
+    basic.pause(170)
+})
+basic.forever(function () {
     render()
 })
