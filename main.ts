@@ -23,11 +23,27 @@ function player1left () {
 }
 function render () {
     led.plot(player1, 4)
+    for (let x = 0; x <= 4; x++) {
+        led.plot(x, aMeteorsY[x])
+    }
 }
+function fallmeteor () {
+    for (let value of aMeteorsY) {
+    	
+    }
+}
+let aMeteorsY: number[] = []
 let player1 = 0
-led.plot(2, 4)
-player1 = 3
+player1 = 2
+aMeteorsY = [
+2,
+0,
+3,
+1,
+0
+]
 basic.forever(function () {
     playercontroller()
+    fallmeteor()
     render()
 })
