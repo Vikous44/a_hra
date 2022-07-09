@@ -4,12 +4,15 @@ function playercontroller () {
     } else if (pins.analogReadPin(AnalogPin.P0) < 508) {
         player1left()
     }
+    if (hp == -1) {
+        restart()
+    }
 }
 function checkcollision () {
     if (aMeteorsY[playerX] == 4) {
         pause2 = 1
         hp += -1
-        basic.showIcon(IconNames.Sad)
+        basic.showNumber(hp + 1)
         basic.pause(2000)
         pause2 = 0
         init()
@@ -22,6 +25,17 @@ function player1right () {
         playerX = 4
     }
     led.unplot(playerX - 1, 4)
+}
+function restart () {
+    basic.clearScreen()
+    pause2 = 1
+    basic.showIcon(IconNames.Target)
+    basic.pause(2000)
+    basic.clearScreen()
+    pause2 = 0
+    hp = 4
+    playerX = 2
+    init()
 }
 function init () {
     basic.clearScreen()
@@ -47,7 +61,7 @@ function player1left () {
 function render () {
     led.plot(playerX, 4)
     for (let x = 0; x <= 4; x++) {
-        led.plot(x, aMeteorsY[x])
+        led.plotBrightness(x, aMeteorsY[x], 60)
     }
 }
 function fallmeteor () {
@@ -62,13 +76,11 @@ function fallmeteor () {
     }
 }
 let y = 0
-let aMeteorsY: number[] = []
-let playerX = 0
 let pause2 = 0
-pause2 = 0
-let hp = 5
-playerX = 2
-init()
+let playerX = 0
+let aMeteorsY: number[] = []
+let hp = 0
+restart()
 basic.forever(function () {
     if (pause2 == 0) {
         fallmeteor()
